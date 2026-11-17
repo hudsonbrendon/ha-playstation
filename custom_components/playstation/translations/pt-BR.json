@@ -27,7 +27,7 @@
       },
       "account": {
         "title": "Conta PSN",
-        "description": "Cole o seu **NPSSO** (64 caracteres).\n\n1. Entre em https://www.playstation.com neste navegador.\n2. Abra [{url}]({url}).\n3. Copie o valor de `npsso` (sem aspas).\n\nSe a integração PlayStation Network do core estiver configurada, o NPSSO dela já vem preenchido.",
+        "description": "Cole o seu **NPSSO** (64 caracteres).\n\n1. Entre em {signin_url} neste navegador.\n2. Abra [{url}]({url}).\n3. Copie o valor de `npsso` (sem aspas).\n\nSe a integração PlayStation Network do core estiver configurada, o NPSSO dela já vem preenchido.",
         "data": {
           "npsso": "NPSSO"
         }

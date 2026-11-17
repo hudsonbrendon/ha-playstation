@@ -27,7 +27,7 @@
       },
       "account": {
         "title": "PSN account",
-        "description": "Paste your **NPSSO** (64 characters).\n\n1. Sign in at https://www.playstation.com in this browser.\n2. Open [{url}]({url}).\n3. Copy the value of `npsso` (without quotes).\n\nIf the core PlayStation Network integration is set up, its NPSSO is prefilled.",
+        "description": "Paste your **NPSSO** (64 characters).\n\n1. Sign in at {signin_url} in this browser.\n2. Open [{url}]({url}).\n3. Copy the value of `npsso` (without quotes).\n\nIf the core PlayStation Network integration is set up, its NPSSO is prefilled.",
         "data": {
           "npsso": "NPSSO"
         }

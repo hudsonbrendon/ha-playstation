@@ -102,7 +102,7 @@
     "pyremoteplay"
   ],
   "requirements": [
-    "PSNAWP==3.0.3",
+    "psnawp>=3.0.3",
     "pyremoteplay==0.7.6",
     "pyee==11.1.1"
   ],
