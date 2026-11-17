@@ -1,0 +1,613 @@
+{
+  "config": {
+    "flow_title": "{name}",
+    "step": {
+      "user": {
+        "title": "PlayStation",
+        "menu_options": {
+          "account": "Conta PlayStation Network",
+          "console": "Console PS5 / PS4 nesta rede",
+          "portable": "PlayStation Portal (ou outro aparelho Sony sem API)"
+        }
+      },
+      "portable": {
+        "title": "PlayStation Portal",
+        "description": "O Portal não tem API: o Home Assistant acompanha se ele está na rede (ping), a latência e a última vez visto. Digite o IP dele (veja no roteador).",
+        "data": {
+          "host": "Endereço IP",
+          "name": "Nome"
+        }
+      },
+      "confirm_portable": {
+        "title": "Aparelho Sony encontrado",
+        "description": "Um aparelho Sony em {host} não responde o protocolo de console, então provavelmente é um PlayStation Portal. Adicionar para acompanhar quando ele está ligado?",
+        "data": {
+          "name": "Nome"
+        }
+      },
+      "account": {
+        "title": "Conta PSN",
+        "description": "Cole o seu **NPSSO** (64 caracteres).\n\n1. Entre em https://www.playstation.com neste navegador.\n2. Abra [{url}]({url}).\n3. Copie o valor de `npsso` (sem aspas).\n\nSe a integração PlayStation Network do core estiver configurada, o NPSSO dela já vem preenchido.",
+        "data": {
+          "npsso": "NPSSO"
+        }
+      },
+      "console": {
+        "title": "Console",
+        "description": "Aparecem os consoles que responderam nesta rede. Ligue o console ou deixe em modo repouso, ou digite o IP.",
+        "data": {
+          "console": "Console encontrado",
+          "host": "Endereço IP"
+        }
+      },
+      "confirm": {
+        "title": "PlayStation encontrado",
+        "description": "Adicionar {name} ({host})?"
+      }
+    },
+    "error": {
+      "invalid_auth": "NPSSO recusado (expirado ou errado)",
+      "cannot_connect": "PSN inacessível",
+      "not_found": "Nenhum console respondeu nesse endereço"
+    },
+    "abort": {
+      "already_configured": "Já configurado",
+      "reauth_successful": "Login renovado",
+      "not_playstation": "Não é um PlayStation"
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Remote Play",
+        "menu_options": {
+          "pair": "Parear Remote Play (PIN)",
+          "credential": "Colar credencial de wake"
+        }
+      },
+      "pair": {
+        "title": "Parear Remote Play",
+        "description": "No console: **Configurações → Sistema → Remote Play → Vincular dispositivo**. Digite o PIN de 8 dígitos que aparece (o console precisa estar ligado). O pareamento libera modo repouso, todos os botões do controle e o ligar.",
+        "data": {
+          "pin": "PIN",
+          "account_id": "ID da conta PSN",
+          "online_id": "Online ID"
+        }
+      },
+      "credential": {
+        "title": "Credencial de wake",
+        "data": {
+          "credential": "Credencial"
+        }
+      }
+    },
+    "error": {
+      "pair_failed": "Pareamento recusado: confira o PIN (ele muda a cada poucos minutos) e se o console está ligado",
+      "need_account": "Adicione a conta PSN antes ou digite o ID da conta"
+    },
+    "abort": {
+      "nothing_to_configure": "Nada para configurar na conta"
+    }
+  },
+  "entity": {
+    "sensor": {
+      "status": {
+        "name": "Status",
+        "state": {
+          "online": "Online",
+          "offline": "Offline",
+          "jogando": "Jogando"
+        }
+      },
+      "plataforma": {
+        "name": "Plataforma"
+      },
+      "jogo_atual": {
+        "name": "Jogo atual"
+      },
+      "ultima_vez_online": {
+        "name": "Última vez online"
+      },
+      "nivel_de_trofeus": {
+        "name": "Nível de troféus"
+      },
+      "progresso_do_nivel": {
+        "name": "Progresso do nível"
+      },
+      "pontos_de_trofeu": {
+        "name": "Pontos de troféu"
+      },
+      "platinas": {
+        "name": "Platinas"
+      },
+      "ouros": {
+        "name": "Ouros"
+      },
+      "pratas": {
+        "name": "Pratas"
+      },
+      "bronzes": {
+        "name": "Bronzes"
+      },
+      "trofeus": {
+        "name": "Troféus"
+      },
+      "jogos_com_trofeus": {
+        "name": "Jogos com troféus"
+      },
+      "jogos_platinados": {
+        "name": "Jogos platinados"
+      },
+      "jogos_completos": {
+        "name": "Jogos 100%"
+      },
+      "conclusao_media": {
+        "name": "Conclusão média"
+      },
+      "ultimo_trofeu": {
+        "name": "Último troféu"
+      },
+      "jogos_na_biblioteca": {
+        "name": "Jogos na biblioteca"
+      },
+      "tempo_total_jogado": {
+        "name": "Tempo total jogado"
+      },
+      "ultimo_jogo": {
+        "name": "Último jogo"
+      },
+      "jogo_mais_jogado": {
+        "name": "Jogo mais jogado"
+      },
+      "jogos_comprados": {
+        "name": "Jogos comprados"
+      },
+      "lista_de_desejos": {
+        "name": "Lista de desejos"
+      },
+      "promocoes_na_lista_de_desejos": {
+        "name": "Promoções na lista de desejos"
+      },
+      "amigos": {
+        "name": "Amigos"
+      },
+      "amigos_online": {
+        "name": "Amigos online"
+      },
+      "amigos_jogando": {
+        "name": "Amigos jogando"
+      },
+      "bloqueados": {
+        "name": "Bloqueados"
+      },
+      "mensagens_novas": {
+        "name": "Mensagens novas"
+      },
+      "dispositivos_vinculados": {
+        "name": "Dispositivos vinculados"
+      },
+      "estado": {
+        "name": "Estado",
+        "state": {
+          "ligado": "Ligado",
+          "repouso": "Repouso",
+          "desligado": "Desligado",
+          "desconhecido": "Desconhecido"
+        }
+      },
+      "app_em_execucao": {
+        "name": "App em execução"
+      },
+      "firmware": {
+        "name": "Firmware"
+      },
+      "ultima_vez_visto": {
+        "name": "Última vez visto"
+      },
+      "endereco_ip": {
+        "name": "Endereço IP"
+      },
+      "latencia": {
+        "name": "Latência"
+      },
+      "sinal_wifi": {
+        "name": "Sinal Wi-Fi"
+      },
+      "banda_wifi": {
+        "name": "Banda Wi-Fi"
+      },
+      "velocidade_da_transmissao": {
+        "name": "Velocidade da transmissão"
+      },
+      "velocidade_de_envio": {
+        "name": "Velocidade de envio"
+      },
+      "dados_recebidos": {
+        "name": "Dados recebidos"
+      },
+      "ativado_em": {
+        "name": "Ativado em"
+      },
+      "armazenamento_livre": {
+        "name": "Armazenamento livre"
+      },
+      "armazenamento_total": {
+        "name": "Armazenamento total"
+      },
+      "armazenamento_usado": {
+        "name": "Armazenamento usado"
+      },
+      "jogos_instalados": {
+        "name": "Jogos instalados"
+      },
+      "ultimo_jogo_aberto": {
+        "name": "Último jogo aberto"
+      },
+      "nome_do_console": {
+        "name": "Nome do console"
+      }
+    },
+    "binary_sensor": {
+      "ps_plus": {
+        "name": "PlayStation Plus"
+      },
+      "online": {
+        "name": "Online"
+      },
+      "jogando": {
+        "name": "Jogando"
+      },
+      "verificado": {
+        "name": "Verificado"
+      },
+      "ligado": {
+        "name": "Ligado"
+      },
+      "na_rede": {
+        "name": "Na rede"
+      },
+      "remote_play_pareado": {
+        "name": "Remote Play pareado"
+      },
+      "pode_ligar": {
+        "name": "Pode ligar"
+      },
+      "transmitindo": {
+        "name": "Transmitindo"
+      }
+    },
+    "button": {
+      "atualizar": {
+        "name": "Atualizar"
+      },
+      "ligar": {
+        "name": "Ligar"
+      },
+      "modo_repouso": {
+        "name": "Repouso"
+      },
+      "ligar_pela_nuvem": {
+        "name": "Ligar pela nuvem"
+      },
+      "repouso_pela_nuvem": {
+        "name": "Repouso pela nuvem"
+      }
+    },
+    "event": {
+      "trofeus": {
+        "name": "Troféus",
+        "state_attributes": {
+          "event_type": {
+            "state": {
+              "trofeu_conquistado": "Troféu conquistado",
+              "jogo_iniciado": "Jogo iniciado",
+              "jogo_encerrado": "Jogo encerrado",
+              "ficou_online": "Ficou online",
+              "ficou_offline": "Ficou offline",
+              "amigo_online": "Amigo online",
+              "mensagem_nova": "Mensagem nova",
+              "ligou": "Ligou",
+              "entrou_em_repouso": "Entrou em repouso",
+              "app_mudou": "App mudou",
+              "promocao_na_lista_de_desejos": "Promoção na lista de desejos",
+              "transmissao_iniciada": "Transmissão iniciada",
+              "transmissao_encerrada": "Transmissão encerrada",
+              "jogo_instalado": "Jogo instalado",
+              "jogo_removido": "Jogo removido"
+            }
+          }
+        }
+      },
+      "partidas": {
+        "name": "Partidas",
+        "state_attributes": {
+          "event_type": {
+            "state": {
+              "trofeu_conquistado": "Troféu conquistado",
+              "jogo_iniciado": "Jogo iniciado",
+              "jogo_encerrado": "Jogo encerrado",
+              "ficou_online": "Ficou online",
+              "ficou_offline": "Ficou offline",
+              "amigo_online": "Amigo online",
+              "mensagem_nova": "Mensagem nova",
+              "ligou": "Ligou",
+              "entrou_em_repouso": "Entrou em repouso",
+              "app_mudou": "App mudou",
+              "promocao_na_lista_de_desejos": "Promoção na lista de desejos",
+              "transmissao_iniciada": "Transmissão iniciada",
+              "transmissao_encerrada": "Transmissão encerrada",
+              "jogo_instalado": "Jogo instalado",
+              "jogo_removido": "Jogo removido"
+            }
+          }
+        }
+      },
+      "presenca": {
+        "name": "Presença",
+        "state_attributes": {
+          "event_type": {
+            "state": {
+              "trofeu_conquistado": "Troféu conquistado",
+              "jogo_iniciado": "Jogo iniciado",
+              "jogo_encerrado": "Jogo encerrado",
+              "ficou_online": "Ficou online",
+              "ficou_offline": "Ficou offline",
+              "amigo_online": "Amigo online",
+              "mensagem_nova": "Mensagem nova",
+              "ligou": "Ligou",
+              "entrou_em_repouso": "Entrou em repouso",
+              "app_mudou": "App mudou",
+              "promocao_na_lista_de_desejos": "Promoção na lista de desejos",
+              "transmissao_iniciada": "Transmissão iniciada",
+              "transmissao_encerrada": "Transmissão encerrada",
+              "jogo_instalado": "Jogo instalado",
+              "jogo_removido": "Jogo removido"
+            }
+          }
+        }
+      },
+      "amigos_evento": {
+        "name": "Amigos",
+        "state_attributes": {
+          "event_type": {
+            "state": {
+              "trofeu_conquistado": "Troféu conquistado",
+              "jogo_iniciado": "Jogo iniciado",
+              "jogo_encerrado": "Jogo encerrado",
+              "ficou_online": "Ficou online",
+              "ficou_offline": "Ficou offline",
+              "amigo_online": "Amigo online",
+              "mensagem_nova": "Mensagem nova",
+              "ligou": "Ligou",
+              "entrou_em_repouso": "Entrou em repouso",
+              "app_mudou": "App mudou",
+              "promocao_na_lista_de_desejos": "Promoção na lista de desejos",
+              "transmissao_iniciada": "Transmissão iniciada",
+              "transmissao_encerrada": "Transmissão encerrada",
+              "jogo_instalado": "Jogo instalado",
+              "jogo_removido": "Jogo removido"
+            }
+          }
+        }
+      },
+      "mensagens": {
+        "name": "Mensagens",
+        "state_attributes": {
+          "event_type": {
+            "state": {
+              "trofeu_conquistado": "Troféu conquistado",
+              "jogo_iniciado": "Jogo iniciado",
+              "jogo_encerrado": "Jogo encerrado",
+              "ficou_online": "Ficou online",
+              "ficou_offline": "Ficou offline",
+              "amigo_online": "Amigo online",
+              "mensagem_nova": "Mensagem nova",
+              "ligou": "Ligou",
+              "entrou_em_repouso": "Entrou em repouso",
+              "app_mudou": "App mudou",
+              "promocao_na_lista_de_desejos": "Promoção na lista de desejos",
+              "transmissao_iniciada": "Transmissão iniciada",
+              "transmissao_encerrada": "Transmissão encerrada",
+              "jogo_instalado": "Jogo instalado",
+              "jogo_removido": "Jogo removido"
+            }
+          }
+        }
+      },
+      "promocoes": {
+        "name": "Promoções",
+        "state_attributes": {
+          "event_type": {
+            "state": {
+              "trofeu_conquistado": "Troféu conquistado",
+              "jogo_iniciado": "Jogo iniciado",
+              "jogo_encerrado": "Jogo encerrado",
+              "ficou_online": "Ficou online",
+              "ficou_offline": "Ficou offline",
+              "amigo_online": "Amigo online",
+              "mensagem_nova": "Mensagem nova",
+              "ligou": "Ligou",
+              "entrou_em_repouso": "Entrou em repouso",
+              "app_mudou": "App mudou",
+              "promocao_na_lista_de_desejos": "Promoção na lista de desejos",
+              "transmissao_iniciada": "Transmissão iniciada",
+              "transmissao_encerrada": "Transmissão encerrada",
+              "jogo_instalado": "Jogo instalado",
+              "jogo_removido": "Jogo removido"
+            }
+          }
+        }
+      },
+      "energia": {
+        "name": "Energia",
+        "state_attributes": {
+          "event_type": {
+            "state": {
+              "trofeu_conquistado": "Troféu conquistado",
+              "jogo_iniciado": "Jogo iniciado",
+              "jogo_encerrado": "Jogo encerrado",
+              "ficou_online": "Ficou online",
+              "ficou_offline": "Ficou offline",
+              "amigo_online": "Amigo online",
+              "mensagem_nova": "Mensagem nova",
+              "ligou": "Ligou",
+              "entrou_em_repouso": "Entrou em repouso",
+              "app_mudou": "App mudou",
+              "promocao_na_lista_de_desejos": "Promoção na lista de desejos",
+              "transmissao_iniciada": "Transmissão iniciada",
+              "transmissao_encerrada": "Transmissão encerrada",
+              "jogo_instalado": "Jogo instalado",
+              "jogo_removido": "Jogo removido"
+            }
+          }
+        }
+      },
+      "apps": {
+        "name": "Apps",
+        "state_attributes": {
+          "event_type": {
+            "state": {
+              "trofeu_conquistado": "Troféu conquistado",
+              "jogo_iniciado": "Jogo iniciado",
+              "jogo_encerrado": "Jogo encerrado",
+              "ficou_online": "Ficou online",
+              "ficou_offline": "Ficou offline",
+              "amigo_online": "Amigo online",
+              "mensagem_nova": "Mensagem nova",
+              "ligou": "Ligou",
+              "entrou_em_repouso": "Entrou em repouso",
+              "app_mudou": "App mudou",
+              "promocao_na_lista_de_desejos": "Promoção na lista de desejos",
+              "transmissao_iniciada": "Transmissão iniciada",
+              "transmissao_encerrada": "Transmissão encerrada",
+              "jogo_instalado": "Jogo instalado",
+              "jogo_removido": "Jogo removido"
+            }
+          }
+        }
+      },
+      "transmissao": {
+        "name": "Transmissão",
+        "state_attributes": {
+          "event_type": {
+            "state": {
+              "trofeu_conquistado": "Troféu conquistado",
+              "jogo_iniciado": "Jogo iniciado",
+              "jogo_encerrado": "Jogo encerrado",
+              "ficou_online": "Ficou online",
+              "ficou_offline": "Ficou offline",
+              "amigo_online": "Amigo online",
+              "mensagem_nova": "Mensagem nova",
+              "ligou": "Ligou",
+              "entrou_em_repouso": "Entrou em repouso",
+              "app_mudou": "App mudou",
+              "promocao_na_lista_de_desejos": "Promoção na lista de desejos",
+              "transmissao_iniciada": "Transmissão iniciada",
+              "transmissao_encerrada": "Transmissão encerrada",
+              "jogo_instalado": "Jogo instalado",
+              "jogo_removido": "Jogo removido"
+            }
+          }
+        }
+      },
+      "instalacoes": {
+        "name": "Instalações",
+        "state_attributes": {
+          "event_type": {
+            "state": {
+              "trofeu_conquistado": "Troféu conquistado",
+              "jogo_iniciado": "Jogo iniciado",
+              "jogo_encerrado": "Jogo encerrado",
+              "ficou_online": "Ficou online",
+              "ficou_offline": "Ficou offline",
+              "amigo_online": "Amigo online",
+              "mensagem_nova": "Mensagem nova",
+              "ligou": "Ligou",
+              "entrou_em_repouso": "Entrou em repouso",
+              "app_mudou": "App mudou",
+              "promocao_na_lista_de_desejos": "Promoção na lista de desejos",
+              "transmissao_iniciada": "Transmissão iniciada",
+              "transmissao_encerrada": "Transmissão encerrada",
+              "jogo_instalado": "Jogo instalado",
+              "jogo_removido": "Jogo removido"
+            }
+          }
+        }
+      }
+    },
+    "image": {
+      "avatar": {
+        "name": "Avatar"
+      },
+      "capa_do_jogo": {
+        "name": "Capa do jogo"
+      }
+    },
+    "remote": {
+      "controle": {
+        "name": "Controle"
+      }
+    },
+    "media_player": {
+      "console": {
+        "name": "Console"
+      }
+    }
+  },
+  "services": {
+    "enviar_mensagem": {
+      "name": "Enviar mensagem PSN",
+      "description": "Envia mensagem para um amigo (online id) ou grupo.",
+      "fields": {
+        "device_id": {
+          "name": "Dispositivo",
+          "description": "Conta PSN ou console"
+        },
+        "mensagem": {
+          "name": "Mensagem",
+          "description": "Texto"
+        },
+        "online_id": {
+          "name": "Online ID",
+          "description": "Online id do amigo"
+        },
+        "group_id": {
+          "name": "ID do grupo",
+          "description": "ID do chat em grupo"
+        }
+      }
+    },
+    "pressionar_botoes": {
+      "name": "Pressionar botões do controle",
+      "description": "Aperta botões do DualSense num console pareado via Remote Play.",
+      "fields": {
+        "device_id": {
+          "name": "Dispositivo",
+          "description": "Conta PSN ou console"
+        },
+        "botoes": {
+          "name": "Botões",
+          "description": "Sequência, ex.: PS, DOWN, CROSS"
+        },
+        "segurar": {
+          "name": "Segurar (s)",
+          "description": "Tempo segurando cada botão"
+        }
+      }
+    },
+    "abrir_jogo": {
+      "name": "Abrir jogo",
+      "description": "Abre um jogo instalado no PS5 pela PSN (funciona fora de casa).",
+      "fields": {
+        "device_id": {
+          "name": "Dispositivo",
+          "description": "Conta PSN ou console"
+        },
+        "jogo": {
+          "name": "Jogo",
+          "description": "Nome ou title id de um jogo instalado"
+        }
+      }
+    }
+  }
+}

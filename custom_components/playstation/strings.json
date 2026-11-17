@@ -1,0 +1,613 @@
+{
+  "config": {
+    "flow_title": "{name}",
+    "step": {
+      "user": {
+        "title": "PlayStation",
+        "menu_options": {
+          "account": "PlayStation Network account",
+          "console": "PS5 / PS4 console on this network",
+          "portable": "PlayStation Portal (or another Sony device without an API)"
+        }
+      },
+      "portable": {
+        "title": "PlayStation Portal",
+        "description": "The Portal has no API: Home Assistant tracks whether it is on the network (ping), its latency and when it was last seen. Type its IP address (see your router).",
+        "data": {
+          "host": "IP address",
+          "name": "Name"
+        }
+      },
+      "confirm_portable": {
+        "title": "Sony device found",
+        "description": "A Sony device at {host} does not answer the console protocol, so it is most likely a PlayStation Portal. Add it to track when it is on?",
+        "data": {
+          "name": "Name"
+        }
+      },
+      "account": {
+        "title": "PSN account",
+        "description": "Paste your **NPSSO** (64 characters).\n\n1. Sign in at https://www.playstation.com in this browser.\n2. Open [{url}]({url}).\n3. Copy the value of `npsso` (without quotes).\n\nIf the core PlayStation Network integration is set up, its NPSSO is prefilled.",
+        "data": {
+          "npsso": "NPSSO"
+        }
+      },
+      "console": {
+        "title": "Console",
+        "description": "Consoles answering on this network are listed. Turn the console on or put it in rest mode first, or type its IP.",
+        "data": {
+          "console": "Console found",
+          "host": "IP address"
+        }
+      },
+      "confirm": {
+        "title": "PlayStation found",
+        "description": "Add {name} ({host})?"
+      }
+    },
+    "error": {
+      "invalid_auth": "NPSSO rejected (expired or wrong)",
+      "cannot_connect": "PSN unreachable",
+      "not_found": "No console answered at that address"
+    },
+    "abort": {
+      "already_configured": "Already configured",
+      "reauth_successful": "Login renewed",
+      "not_playstation": "Not a PlayStation"
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Remote Play",
+        "menu_options": {
+          "pair": "Pair Remote Play (PIN)",
+          "credential": "Paste wake credential"
+        }
+      },
+      "pair": {
+        "title": "Pair Remote Play",
+        "description": "On the console: **Settings → System → Remote Play → Link Device**. Type the 8-digit PIN shown (the console must be on). Pairing unlocks rest mode, every controller button and wake.",
+        "data": {
+          "pin": "PIN",
+          "account_id": "PSN account id",
+          "online_id": "Online ID"
+        }
+      },
+      "credential": {
+        "title": "Wake credential",
+        "data": {
+          "credential": "Credential"
+        }
+      }
+    },
+    "error": {
+      "pair_failed": "Pairing refused: check the PIN (it changes every few minutes) and that the console is on",
+      "need_account": "Add the PSN account first or type the account id"
+    },
+    "abort": {
+      "nothing_to_configure": "Nothing to configure for the account"
+    }
+  },
+  "entity": {
+    "sensor": {
+      "status": {
+        "name": "Status",
+        "state": {
+          "online": "Online",
+          "offline": "Offline",
+          "jogando": "Playing"
+        }
+      },
+      "plataforma": {
+        "name": "Platform"
+      },
+      "jogo_atual": {
+        "name": "Current game"
+      },
+      "ultima_vez_online": {
+        "name": "Last online"
+      },
+      "nivel_de_trofeus": {
+        "name": "Trophy level"
+      },
+      "progresso_do_nivel": {
+        "name": "Level progress"
+      },
+      "pontos_de_trofeu": {
+        "name": "Trophy points"
+      },
+      "platinas": {
+        "name": "Platinum"
+      },
+      "ouros": {
+        "name": "Gold"
+      },
+      "pratas": {
+        "name": "Silver"
+      },
+      "bronzes": {
+        "name": "Bronze"
+      },
+      "trofeus": {
+        "name": "Trophies"
+      },
+      "jogos_com_trofeus": {
+        "name": "Games with trophies"
+      },
+      "jogos_platinados": {
+        "name": "Platinum games"
+      },
+      "jogos_completos": {
+        "name": "100% games"
+      },
+      "conclusao_media": {
+        "name": "Average completion"
+      },
+      "ultimo_trofeu": {
+        "name": "Latest trophy"
+      },
+      "jogos_na_biblioteca": {
+        "name": "Library games"
+      },
+      "tempo_total_jogado": {
+        "name": "Total playtime"
+      },
+      "ultimo_jogo": {
+        "name": "Last game"
+      },
+      "jogo_mais_jogado": {
+        "name": "Most played"
+      },
+      "jogos_comprados": {
+        "name": "Purchased games"
+      },
+      "lista_de_desejos": {
+        "name": "Wishlist"
+      },
+      "promocoes_na_lista_de_desejos": {
+        "name": "Wishlist sales"
+      },
+      "amigos": {
+        "name": "Friends"
+      },
+      "amigos_online": {
+        "name": "Friends online"
+      },
+      "amigos_jogando": {
+        "name": "Friends playing"
+      },
+      "bloqueados": {
+        "name": "Blocked users"
+      },
+      "mensagens_novas": {
+        "name": "Chats with new messages"
+      },
+      "dispositivos_vinculados": {
+        "name": "Linked devices"
+      },
+      "estado": {
+        "name": "Power state",
+        "state": {
+          "ligado": "On",
+          "repouso": "Rest mode",
+          "desligado": "Off / unreachable",
+          "desconhecido": "Unknown"
+        }
+      },
+      "app_em_execucao": {
+        "name": "Running app"
+      },
+      "firmware": {
+        "name": "Firmware"
+      },
+      "ultima_vez_visto": {
+        "name": "Last seen"
+      },
+      "endereco_ip": {
+        "name": "IP address"
+      },
+      "latencia": {
+        "name": "Latency"
+      },
+      "sinal_wifi": {
+        "name": "Wi-Fi signal"
+      },
+      "banda_wifi": {
+        "name": "Wi-Fi band"
+      },
+      "velocidade_da_transmissao": {
+        "name": "Stream bitrate"
+      },
+      "velocidade_de_envio": {
+        "name": "Upload speed"
+      },
+      "dados_recebidos": {
+        "name": "Data received"
+      },
+      "ativado_em": {
+        "name": "Activated on"
+      },
+      "armazenamento_livre": {
+        "name": "Free storage"
+      },
+      "armazenamento_total": {
+        "name": "Total storage"
+      },
+      "armazenamento_usado": {
+        "name": "Storage used"
+      },
+      "jogos_instalados": {
+        "name": "Installed games"
+      },
+      "ultimo_jogo_aberto": {
+        "name": "Last opened game"
+      },
+      "nome_do_console": {
+        "name": "Console name"
+      }
+    },
+    "binary_sensor": {
+      "ps_plus": {
+        "name": "PlayStation Plus"
+      },
+      "online": {
+        "name": "Online"
+      },
+      "jogando": {
+        "name": "Playing"
+      },
+      "verificado": {
+        "name": "Verified"
+      },
+      "ligado": {
+        "name": "Powered on"
+      },
+      "na_rede": {
+        "name": "On network"
+      },
+      "remote_play_pareado": {
+        "name": "Remote Play paired"
+      },
+      "pode_ligar": {
+        "name": "Wake available"
+      },
+      "transmitindo": {
+        "name": "Streaming"
+      }
+    },
+    "button": {
+      "atualizar": {
+        "name": "Refresh"
+      },
+      "ligar": {
+        "name": "Wake"
+      },
+      "modo_repouso": {
+        "name": "Rest mode"
+      },
+      "ligar_pela_nuvem": {
+        "name": "Wake (cloud)"
+      },
+      "repouso_pela_nuvem": {
+        "name": "Rest mode (cloud)"
+      }
+    },
+    "event": {
+      "trofeus": {
+        "name": "Trophies",
+        "state_attributes": {
+          "event_type": {
+            "state": {
+              "trofeu_conquistado": "Trophy earned",
+              "jogo_iniciado": "Game started",
+              "jogo_encerrado": "Game stopped",
+              "ficou_online": "Went online",
+              "ficou_offline": "Went offline",
+              "amigo_online": "Friend online",
+              "mensagem_nova": "New message",
+              "ligou": "Powered on",
+              "entrou_em_repouso": "Entered rest mode",
+              "app_mudou": "App changed",
+              "promocao_na_lista_de_desejos": "Wishlist item on sale",
+              "transmissao_iniciada": "Streaming started",
+              "transmissao_encerrada": "Streaming stopped",
+              "jogo_instalado": "Game installed",
+              "jogo_removido": "Game removed"
+            }
+          }
+        }
+      },
+      "partidas": {
+        "name": "Sessions",
+        "state_attributes": {
+          "event_type": {
+            "state": {
+              "trofeu_conquistado": "Trophy earned",
+              "jogo_iniciado": "Game started",
+              "jogo_encerrado": "Game stopped",
+              "ficou_online": "Went online",
+              "ficou_offline": "Went offline",
+              "amigo_online": "Friend online",
+              "mensagem_nova": "New message",
+              "ligou": "Powered on",
+              "entrou_em_repouso": "Entered rest mode",
+              "app_mudou": "App changed",
+              "promocao_na_lista_de_desejos": "Wishlist item on sale",
+              "transmissao_iniciada": "Streaming started",
+              "transmissao_encerrada": "Streaming stopped",
+              "jogo_instalado": "Game installed",
+              "jogo_removido": "Game removed"
+            }
+          }
+        }
+      },
+      "presenca": {
+        "name": "Presence",
+        "state_attributes": {
+          "event_type": {
+            "state": {
+              "trofeu_conquistado": "Trophy earned",
+              "jogo_iniciado": "Game started",
+              "jogo_encerrado": "Game stopped",
+              "ficou_online": "Went online",
+              "ficou_offline": "Went offline",
+              "amigo_online": "Friend online",
+              "mensagem_nova": "New message",
+              "ligou": "Powered on",
+              "entrou_em_repouso": "Entered rest mode",
+              "app_mudou": "App changed",
+              "promocao_na_lista_de_desejos": "Wishlist item on sale",
+              "transmissao_iniciada": "Streaming started",
+              "transmissao_encerrada": "Streaming stopped",
+              "jogo_instalado": "Game installed",
+              "jogo_removido": "Game removed"
+            }
+          }
+        }
+      },
+      "amigos_evento": {
+        "name": "Friends",
+        "state_attributes": {
+          "event_type": {
+            "state": {
+              "trofeu_conquistado": "Trophy earned",
+              "jogo_iniciado": "Game started",
+              "jogo_encerrado": "Game stopped",
+              "ficou_online": "Went online",
+              "ficou_offline": "Went offline",
+              "amigo_online": "Friend online",
+              "mensagem_nova": "New message",
+              "ligou": "Powered on",
+              "entrou_em_repouso": "Entered rest mode",
+              "app_mudou": "App changed",
+              "promocao_na_lista_de_desejos": "Wishlist item on sale",
+              "transmissao_iniciada": "Streaming started",
+              "transmissao_encerrada": "Streaming stopped",
+              "jogo_instalado": "Game installed",
+              "jogo_removido": "Game removed"
+            }
+          }
+        }
+      },
+      "mensagens": {
+        "name": "Messages",
+        "state_attributes": {
+          "event_type": {
+            "state": {
+              "trofeu_conquistado": "Trophy earned",
+              "jogo_iniciado": "Game started",
+              "jogo_encerrado": "Game stopped",
+              "ficou_online": "Went online",
+              "ficou_offline": "Went offline",
+              "amigo_online": "Friend online",
+              "mensagem_nova": "New message",
+              "ligou": "Powered on",
+              "entrou_em_repouso": "Entered rest mode",
+              "app_mudou": "App changed",
+              "promocao_na_lista_de_desejos": "Wishlist item on sale",
+              "transmissao_iniciada": "Streaming started",
+              "transmissao_encerrada": "Streaming stopped",
+              "jogo_instalado": "Game installed",
+              "jogo_removido": "Game removed"
+            }
+          }
+        }
+      },
+      "promocoes": {
+        "name": "Sales",
+        "state_attributes": {
+          "event_type": {
+            "state": {
+              "trofeu_conquistado": "Trophy earned",
+              "jogo_iniciado": "Game started",
+              "jogo_encerrado": "Game stopped",
+              "ficou_online": "Went online",
+              "ficou_offline": "Went offline",
+              "amigo_online": "Friend online",
+              "mensagem_nova": "New message",
+              "ligou": "Powered on",
+              "entrou_em_repouso": "Entered rest mode",
+              "app_mudou": "App changed",
+              "promocao_na_lista_de_desejos": "Wishlist item on sale",
+              "transmissao_iniciada": "Streaming started",
+              "transmissao_encerrada": "Streaming stopped",
+              "jogo_instalado": "Game installed",
+              "jogo_removido": "Game removed"
+            }
+          }
+        }
+      },
+      "energia": {
+        "name": "Power",
+        "state_attributes": {
+          "event_type": {
+            "state": {
+              "trofeu_conquistado": "Trophy earned",
+              "jogo_iniciado": "Game started",
+              "jogo_encerrado": "Game stopped",
+              "ficou_online": "Went online",
+              "ficou_offline": "Went offline",
+              "amigo_online": "Friend online",
+              "mensagem_nova": "New message",
+              "ligou": "Powered on",
+              "entrou_em_repouso": "Entered rest mode",
+              "app_mudou": "App changed",
+              "promocao_na_lista_de_desejos": "Wishlist item on sale",
+              "transmissao_iniciada": "Streaming started",
+              "transmissao_encerrada": "Streaming stopped",
+              "jogo_instalado": "Game installed",
+              "jogo_removido": "Game removed"
+            }
+          }
+        }
+      },
+      "apps": {
+        "name": "Apps",
+        "state_attributes": {
+          "event_type": {
+            "state": {
+              "trofeu_conquistado": "Trophy earned",
+              "jogo_iniciado": "Game started",
+              "jogo_encerrado": "Game stopped",
+              "ficou_online": "Went online",
+              "ficou_offline": "Went offline",
+              "amigo_online": "Friend online",
+              "mensagem_nova": "New message",
+              "ligou": "Powered on",
+              "entrou_em_repouso": "Entered rest mode",
+              "app_mudou": "App changed",
+              "promocao_na_lista_de_desejos": "Wishlist item on sale",
+              "transmissao_iniciada": "Streaming started",
+              "transmissao_encerrada": "Streaming stopped",
+              "jogo_instalado": "Game installed",
+              "jogo_removido": "Game removed"
+            }
+          }
+        }
+      },
+      "transmissao": {
+        "name": "Streaming",
+        "state_attributes": {
+          "event_type": {
+            "state": {
+              "trofeu_conquistado": "Trophy earned",
+              "jogo_iniciado": "Game started",
+              "jogo_encerrado": "Game stopped",
+              "ficou_online": "Went online",
+              "ficou_offline": "Went offline",
+              "amigo_online": "Friend online",
+              "mensagem_nova": "New message",
+              "ligou": "Powered on",
+              "entrou_em_repouso": "Entered rest mode",
+              "app_mudou": "App changed",
+              "promocao_na_lista_de_desejos": "Wishlist item on sale",
+              "transmissao_iniciada": "Streaming started",
+              "transmissao_encerrada": "Streaming stopped",
+              "jogo_instalado": "Game installed",
+              "jogo_removido": "Game removed"
+            }
+          }
+        }
+      },
+      "instalacoes": {
+        "name": "Installs",
+        "state_attributes": {
+          "event_type": {
+            "state": {
+              "trofeu_conquistado": "Trophy earned",
+              "jogo_iniciado": "Game started",
+              "jogo_encerrado": "Game stopped",
+              "ficou_online": "Went online",
+              "ficou_offline": "Went offline",
+              "amigo_online": "Friend online",
+              "mensagem_nova": "New message",
+              "ligou": "Powered on",
+              "entrou_em_repouso": "Entered rest mode",
+              "app_mudou": "App changed",
+              "promocao_na_lista_de_desejos": "Wishlist item on sale",
+              "transmissao_iniciada": "Streaming started",
+              "transmissao_encerrada": "Streaming stopped",
+              "jogo_instalado": "Game installed",
+              "jogo_removido": "Game removed"
+            }
+          }
+        }
+      }
+    },
+    "image": {
+      "avatar": {
+        "name": "Avatar"
+      },
+      "capa_do_jogo": {
+        "name": "Game cover"
+      }
+    },
+    "remote": {
+      "controle": {
+        "name": "Controller"
+      }
+    },
+    "media_player": {
+      "console": {
+        "name": "Console"
+      }
+    }
+  },
+  "services": {
+    "enviar_mensagem": {
+      "name": "Send PSN message",
+      "description": "Sends a message to a friend (online id) or a group chat.",
+      "fields": {
+        "device_id": {
+          "name": "Device",
+          "description": "PSN account or console"
+        },
+        "mensagem": {
+          "name": "Message",
+          "description": "Text"
+        },
+        "online_id": {
+          "name": "Online ID",
+          "description": "Friend online id"
+        },
+        "group_id": {
+          "name": "Group id",
+          "description": "Group chat id"
+        }
+      }
+    },
+    "pressionar_botoes": {
+      "name": "Press controller buttons",
+      "description": "Presses DualSense buttons on a paired console via Remote Play.",
+      "fields": {
+        "device_id": {
+          "name": "Device",
+          "description": "PSN account or console"
+        },
+        "botoes": {
+          "name": "Buttons",
+          "description": "Sequence, e.g. PS, DOWN, CROSS"
+        },
+        "segurar": {
+          "name": "Hold (s)",
+          "description": "Hold each button"
+        }
+      }
+    },
+    "abrir_jogo": {
+      "name": "Launch game",
+      "description": "Starts an installed game on the PS5 through PSN (works away from home).",
+      "fields": {
+        "device_id": {
+          "name": "Device",
+          "description": "PSN account or console"
+        },
+        "jogo": {
+          "name": "Game",
+          "description": "Name or title id of an installed game"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,70 @@
+enviar_mensagem:
+  fields:
+    device_id:
+      required: true
+      selector:
+        device:
+          integration: playstation
+    mensagem:
+      required: true
+      selector:
+        text:
+          multiline: true
+    online_id:
+      selector:
+        text:
+    group_id:
+      selector:
+        text:
+pressionar_botoes:
+  fields:
+    device_id:
+      required: true
+      selector:
+        device:
+          integration: playstation
+    botoes:
+      required: true
+      example: [PS, DOWN, CROSS]
+      selector:
+        select:
+          multiple: true
+          options:
+            - CROSS
+            - CIRCLE
+            - SQUARE
+            - TRIANGLE
+            - UP
+            - DOWN
+            - LEFT
+            - RIGHT
+            - L1
+            - R1
+            - L2
+            - R2
+            - L3
+            - R3
+            - OPTIONS
+            - SHARE
+            - PS
+            - TOUCHPAD
+    segurar:
+      default: 0
+      selector:
+        number:
+          min: 0
+          max: 10
+          step: 0.1
+          unit_of_measurement: s
+abrir_jogo:
+  fields:
+    device_id:
+      required: true
+      selector:
+        device:
+          integration: playstation
+    jogo:
+      required: true
+      example: Grand Theft Auto VI
+      selector:
+        text:

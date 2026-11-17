@@ -1,0 +1,232 @@
+{
+  "entity": {
+    "sensor": {
+      "status": {
+        "default": "mdi:sony-playstation"
+      },
+      "plataforma": {
+        "default": "mdi:gamepad-variant"
+      },
+      "jogo_atual": {
+        "default": "mdi:gamepad-variant"
+      },
+      "ultima_vez_online": {
+        "default": "mdi:clock-outline"
+      },
+      "nivel_de_trofeus": {
+        "default": "mdi:trophy-variant"
+      },
+      "progresso_do_nivel": {
+        "default": "mdi:progress-star"
+      },
+      "pontos_de_trofeu": {
+        "default": "mdi:star-four-points"
+      },
+      "platinas": {
+        "default": "mdi:trophy-award"
+      },
+      "ouros": {
+        "default": "mdi:trophy"
+      },
+      "pratas": {
+        "default": "mdi:trophy-outline"
+      },
+      "bronzes": {
+        "default": "mdi:trophy-broken"
+      },
+      "trofeus": {
+        "default": "mdi:trophy"
+      },
+      "jogos_com_trofeus": {
+        "default": "mdi:trophy-variant-outline"
+      },
+      "jogos_platinados": {
+        "default": "mdi:trophy-award"
+      },
+      "jogos_completos": {
+        "default": "mdi:check-decagram"
+      },
+      "conclusao_media": {
+        "default": "mdi:percent-circle"
+      },
+      "ultimo_trofeu": {
+        "default": "mdi:trophy"
+      },
+      "jogos_na_biblioteca": {
+        "default": "mdi:bookshelf"
+      },
+      "tempo_total_jogado": {
+        "default": "mdi:timer-sand"
+      },
+      "ultimo_jogo": {
+        "default": "mdi:history"
+      },
+      "jogo_mais_jogado": {
+        "default": "mdi:fire"
+      },
+      "jogos_comprados": {
+        "default": "mdi:cart"
+      },
+      "lista_de_desejos": {
+        "default": "mdi:heart"
+      },
+      "promocoes_na_lista_de_desejos": {
+        "default": "mdi:sale"
+      },
+      "amigos": {
+        "default": "mdi:account-multiple"
+      },
+      "amigos_online": {
+        "default": "mdi:account-multiple-check"
+      },
+      "amigos_jogando": {
+        "default": "mdi:account-multiple-plus"
+      },
+      "bloqueados": {
+        "default": "mdi:account-cancel"
+      },
+      "mensagens_novas": {
+        "default": "mdi:message-badge"
+      },
+      "dispositivos_vinculados": {
+        "default": "mdi:devices"
+      },
+      "estado": {
+        "default": "mdi:power"
+      },
+      "app_em_execucao": {
+        "default": "mdi:application"
+      },
+      "firmware": {
+        "default": "mdi:chip"
+      },
+      "ultima_vez_visto": {
+        "default": "mdi:eye-check"
+      },
+      "endereco_ip": {
+        "default": "mdi:ip-network"
+      },
+      "latencia": {
+        "default": "mdi:timer-outline"
+      },
+      "sinal_wifi": {
+        "default": "mdi:wifi"
+      },
+      "banda_wifi": {
+        "default": "mdi:wifi-settings"
+      },
+      "velocidade_da_transmissao": {
+        "default": "mdi:download-network"
+      },
+      "velocidade_de_envio": {
+        "default": "mdi:upload-network"
+      },
+      "dados_recebidos": {
+        "default": "mdi:download"
+      },
+      "ativado_em": {
+        "default": "mdi:calendar-check"
+      },
+      "armazenamento_livre": {
+        "default": "mdi:harddisk"
+      },
+      "armazenamento_total": {
+        "default": "mdi:harddisk"
+      },
+      "armazenamento_usado": {
+        "default": "mdi:harddisk-plus"
+      },
+      "jogos_instalados": {
+        "default": "mdi:download-box"
+      },
+      "ultimo_jogo_aberto": {
+        "default": "mdi:play-box"
+      },
+      "nome_do_console": {
+        "default": "mdi:label"
+      }
+    },
+    "binary_sensor": {
+      "ps_plus": {
+        "default": "mdi:plus-circle"
+      },
+      "jogando": {
+        "default": "mdi:gamepad-variant"
+      },
+      "remote_play_pareado": {
+        "default": "mdi:link-variant"
+      },
+      "pode_ligar": {
+        "default": "mdi:power-sleep"
+      },
+      "transmitindo": {
+        "default": "mdi:cast-connected"
+      }
+    },
+    "button": {
+      "atualizar": {
+        "default": "mdi:refresh"
+      },
+      "ligar": {
+        "default": "mdi:power"
+      },
+      "modo_repouso": {
+        "default": "mdi:power-sleep"
+      },
+      "ligar_pela_nuvem": {
+        "default": "mdi:cloud-check"
+      },
+      "repouso_pela_nuvem": {
+        "default": "mdi:cloud-off"
+      }
+    },
+    "event": {
+      "trofeus": {
+        "default": "mdi:trophy"
+      },
+      "partidas": {
+        "default": "mdi:gamepad-variant"
+      },
+      "presenca": {
+        "default": "mdi:account-clock"
+      },
+      "amigos_evento": {
+        "default": "mdi:account-multiple"
+      },
+      "mensagens": {
+        "default": "mdi:message"
+      },
+      "promocoes": {
+        "default": "mdi:sale"
+      },
+      "energia": {
+        "default": "mdi:power"
+      },
+      "apps": {
+        "default": "mdi:application"
+      },
+      "transmissao": {
+        "default": "mdi:cast"
+      },
+      "instalacoes": {
+        "default": "mdi:download"
+      }
+    },
+    "remote": {
+      "controle": {
+        "default": "mdi:controller"
+      }
+    }
+  },
+  "services": {
+    "enviar_mensagem": {
+      "service": "mdi:message-text"
+    },
+    "pressionar_botoes": {
+      "service": "mdi:controller"
+    },
+    "abrir_jogo": {
+      "service": "mdi:play"
+    }
+  }
+}
