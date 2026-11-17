@@ -1,4 +1,17 @@
+<p align="center">
+  <img src="custom_components/playstation/brand/logo@2x.png" alt="PlayStation" height="128">
+</p>
+
 # PlayStation for Home Assistant
+
+[![Tests](https://github.com/hudsonbrendon/ha-playstation/actions/workflows/tests.yml/badge.svg)](https://github.com/hudsonbrendon/ha-playstation/actions/workflows/tests.yml)
+[![Hassfest](https://github.com/hudsonbrendon/ha-playstation/actions/workflows/hassfest.yml/badge.svg)](https://github.com/hudsonbrendon/ha-playstation/actions/workflows/hassfest.yml)
+[![HACS](https://github.com/hudsonbrendon/ha-playstation/actions/workflows/validate.yml/badge.svg)](https://github.com/hudsonbrendon/ha-playstation/actions/workflows/validate.yml)
+[![Release](https://img.shields.io/github/v/release/hudsonbrendon/ha-playstation?sort=semver)](https://github.com/hudsonbrendon/ha-playstation/releases)
+[![Downloads](https://img.shields.io/github/downloads/hudsonbrendon/ha-playstation/total)](https://github.com/hudsonbrendon/ha-playstation/releases)
+[![HACS Custom](https://img.shields.io/badge/HACS-Custom-41BDF5.svg)](https://hacs.xyz/)
+[![Home Assistant](https://img.shields.io/badge/Home%20Assistant-2026.10.0%2B-18BCF2?logo=homeassistant&logoColor=white)](https://www.home-assistant.io/)
+[![License](https://img.shields.io/github/license/hudsonbrendon/ha-playstation)](LICENSE)
 
 A custom integration (`playstation`) that covers far more than the core *PlayStation Network* integration. It handles the PSN account, plus the PS5/PS4 on your network: auto-discovery, wake, rest mode, and every controller button through Remote Play.
 
@@ -41,3 +54,10 @@ To unlock rest mode, the buttons and wake, open the console's **Configure → Pa
 - **Action:** `playstation.pressionar_botoes`, which sends a button sequence with hold.
 
 How each piece was found and verified: [REVERSE_ENGINEERING.md](REVERSE_ENGINEERING.md).
+
+## Installation
+
+[![Open in HACS](https://my.home-assistant.io/badges/hacs_repository.svg)](https://my.home-assistant.io/redirect/hacs_repository/?owner=hudsonbrendon&repository=ha-playstation&category=integration)
+[![Add integration](https://my.home-assistant.io/badges/config_flow_start.svg)](https://my.home-assistant.io/redirect/config_flow_start/?domain=playstation)
+
+Or in HACS: *⋮ → Custom repositories* → `https://github.com/hudsonbrendon/ha-playstation` (category Integration) → download → restart Home Assistant.
